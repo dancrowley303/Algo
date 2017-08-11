@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace Algo
 {
-    public class Class1
+    public interface IEnumerableLinkedList<T>
     {
+        LinkedListNode<T> First { get; }
     }
 }

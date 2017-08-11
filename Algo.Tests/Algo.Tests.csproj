@@ -1,16 +1,19 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\NUnit3TestAdapter.3.8.0\build\net35\NUnit3TestAdapter.props" Condition="Exists('..\packages\NUnit3TestAdapter.3.8.0\build\net35\NUnit3TestAdapter.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{D7297F6A-D431-465A-AC37-3449CB98065F}</ProjectGuid>
+    <ProjectGuid>{B5FF0F63-C685-4BFC-94DB-9FC29661DBFD}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Algo</RootNamespace>
-    <AssemblyName>Algo</AssemblyName>
+    <RootNamespace>Algo.Tests</RootNamespace>
+    <AssemblyName>Algo.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -30,6 +33,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="nunit.framework, Version=3.7.1.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
+      <HintPath>..\packages\NUnit.3.7.1\lib\net45\nunit.framework.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -40,25 +46,26 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DijkstraExpressionEvaluation.cs" />
-    <Compile Include="FixedCapacityStack.cs" />
-    <Compile Include="IEnumerableLinkedList.cs" />
-    <Compile Include="Interval1D.cs" />
-    <Compile Include="Interval2D.cs" />
-    <Compile Include="Bag.cs" />
-    <Compile Include="LinkedListBag.cs" />
-    <Compile Include="LinkedListEnumerator.cs" />
-    <Compile Include="LinkedListNode.cs" />
-    <Compile Include="LinkedListQueue.cs" />
-    <Compile Include="LinkedListStack.cs" />
-    <Compile Include="Point2D.cs" />
-    <Compile Include="Queue.cs" />
-    <Compile Include="ResizingArrayQueue.cs" />
-    <Compile Include="Search.cs" />
-    <Compile Include="Sort.cs" />
+    <Compile Include="Exercises.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ResizingArrayStack.cs" />
-    <Compile Include="Stack.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Algo\Algo.csproj">
+      <Project>{d7297f6a-d431-465a-ac37-3449cb98065f}</Project>
+      <Name>Algo</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\NUnit3TestAdapter.3.8.0\build\net35\NUnit3TestAdapter.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\NUnit3TestAdapter.3.8.0\build\net35\NUnit3TestAdapter.props'))" />
+  </Target>
 </Project>

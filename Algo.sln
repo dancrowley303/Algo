@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.26403.7
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Algo", "Algo\Algo.csproj", "{D7297F6A-D431-465A-AC37-3449CB98065F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Algo.Tests", "Algo.Tests\Algo.Tests.csproj", "{B5FF0F63-C685-4BFC-94DB-9FC29661DBFD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{D7297F6A-D431-465A-AC37-3449CB98065F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D7297F6A-D431-465A-AC37-3449CB98065F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D7297F6A-D431-465A-AC37-3449CB98065F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B5FF0F63-C685-4BFC-94DB-9FC29661DBFD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B5FF0F63-C685-4BFC-94DB-9FC29661DBFD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B5FF0F63-C685-4BFC-94DB-9FC29661DBFD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B5FF0F63-C685-4BFC-94DB-9FC29661DBFD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
