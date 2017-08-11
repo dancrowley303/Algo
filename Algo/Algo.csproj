@@ -41,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DijkstraExpressionEvaluation.cs" />
+    <Compile Include="DoubleNode.cs" />
     <Compile Include="FixedCapacityStack.cs" />
     <Compile Include="IEnumerableLinkedList.cs" />
     <Compile Include="Interval1D.cs" />
@@ -49,6 +50,7 @@
     <Compile Include="LinkedListBag.cs" />
     <Compile Include="LinkedListEnumerator.cs" />
     <Compile Include="LinkedListNode.cs" />
+    <Compile Include="CircularQueue.cs" />
     <Compile Include="LinkedListQueue.cs" />
     <Compile Include="LinkedListStack.cs" />
     <Compile Include="Point2D.cs" />

@@ -287,7 +287,7 @@ namespace Algo.Tests
 
         }
 
-        [Test]
+        [Test] // 1.3.4
         public void Parentheses()
         {            
             Assert.IsTrue(MatchParens("[()]{}{[()()]()}"));
@@ -295,7 +295,7 @@ namespace Algo.Tests
             Assert.IsTrue(MatchParens("(((((((((({{{{{{{{{{[[[[[[[[[[]]]]]]]]]]{}{}{}{}{}()()()()(){()[][]}}}}}}}}}}}))))))))))"));
         }
 
-        [Test]
+        [Test] // 1.3.9
         public void InsertLeftParens()
         {
             var inserted = InsertParens("1+2)*3-4)*5-6)))");
@@ -421,7 +421,7 @@ namespace Algo.Tests
             return stack.First();
         }
 
-        [Test]
+        [Test] // 1.3.10
         public void InfixToPostfix()
         {
             var input = "3+4*2/(1-5)";
@@ -429,7 +429,7 @@ namespace Algo.Tests
             Assert.AreEqual("342*15-/+", output);
         }
 
-        [Test]
+        [Test] // 1.3.11
         public void EvaluatePostfix()
         {
             var input = "342*15-/+";
@@ -452,7 +452,7 @@ namespace Algo.Tests
             return output;
         }
 
-        [Test]
+        [Test] // 1.3.12
         public void CopyStack()
         {
             var input = new LinkedListStack<string>();
@@ -465,7 +465,7 @@ namespace Algo.Tests
             Assert.AreEqual(output.ToArray(), input.ToArray());
         }
 
-        [Test]
+        [Test] // 1.3.14
         public void ResizeQueue()
         {
             var queue = new ResizingArrayQueue<string>(2);
@@ -527,24 +527,256 @@ namespace Algo.Tests
             current.Next = null;
         }
 
+        private LinkedListNode<string>[] BuildFiveLinkedStringNodes()
+        {
+            var nodes = new LinkedListNode<string>[5];
+
+
+            nodes[0] = new LinkedListNode<string>() { Item = "First" };
+            nodes[1] = new LinkedListNode<string>() { Item = "Second" };
+            nodes[2] = new LinkedListNode<string>() { Item = "Third" };
+            nodes[3] = new LinkedListNode<string>() { Item = "Fourth" };
+            nodes[4] = new LinkedListNode<string>() { Item = "Fifth" };
+
+            nodes[0].Next = nodes[1];
+            nodes[1].Next = nodes[2];
+            nodes[2].Next = nodes[3];
+            nodes[3].Next = nodes[4];
+
+            return nodes;
+        }
+
 
         [Test]
         public void RemoveLastNode()
         {
-            var first = new LinkedListNode<string>() { Item = "First" };
-            var second = new LinkedListNode<string>() { Item = "Second" };
-            var third = new LinkedListNode<string>() { Item = "Third" };
-            var fourth = new LinkedListNode<string>() { Item = "Fourth" };
-            var fifth = new LinkedListNode<string>() { Item = "Fifth" };
+            var nodes = BuildFiveLinkedStringNodes();
+            RemoveLastNode<string>(nodes[0]);
+            Assert.IsNull(nodes[3].Next);
+        }
 
-            first.Next = second;
-            second.Next = third;
-            third.Next = fourth;
-            fourth.Next = fifth;
+        private void DeleteNodeInLinkedList<T>(LinkedListNode<T> first, int k)
+        {
+            var current = first;
+            for (var i = 1; i < k - 1; i++)
+            {
+                current = current.Next;
+            }
+            current.Next = current.Next?.Next;
+        }
 
-            RemoveLastNode<string>(first);
+        [Test] // 1.3.20
+        public void Delete()
+        {
+            var nodes = BuildFiveLinkedStringNodes();
+            DeleteNodeInLinkedList<string>(nodes[0], 5);
+            Assert.AreEqual(nodes[1].Next, nodes[3]);
+        }
 
-            Assert.IsNull(fourth.Next);
+        private bool FindInLinkedList<T>(LinkedListNode<T> first, T searchItem)
+        {
+            var current = first;
+            do
+            {
+                if (current.Item.Equals(searchItem)) return true;
+                current = current.Next;
+            } while (current != null);
+
+            return false;
+        }
+
+        [Test] // 1.3.21
+        public void FindInLinkedList()
+        {
+            var nodes = BuildFiveLinkedStringNodes();
+            Assert.IsTrue(FindInLinkedList(nodes[0], "Fifth"));
+        }
+
+        private void RemoveAfter<T>(LinkedListNode<T> current)
+        {
+            if (current == null) return;
+            current.Next = current?.Next?.Next;
+        }
+
+        [Test] // 1.3.24
+        public void RemoveAfter()
+        {
+            var nodes = BuildFiveLinkedStringNodes();
+            RemoveAfter(nodes[2]);
+            Assert.AreEqual(nodes[4], nodes[2].Next);
+            RemoveAfter(nodes[4]);
+            Assert.AreEqual(null, nodes[4].Next);
+        }
+
+        private void InsertAfter<T>(LinkedListNode<T> current, LinkedListNode<T> insert)
+        {
+            insert.Next = current.Next;
+            current.Next = insert;
+        }
+
+        [Test] // 1.3.25
+        public void InsertAfter()
+        {
+            var nodes = BuildFiveLinkedStringNodes();
+            var newNode = new LinkedListNode<string>() { Item = "Insert" };
+            InsertAfter(nodes[3], newNode);
+            Assert.AreEqual(newNode, nodes[3].Next);
+            Assert.AreEqual(nodes[4], newNode.Next);
+        }
+
+        private void Remove<T>(LinkedListNode<T> first, T key)
+        {
+            var previous = first;
+            var current = previous;
+            while (current != null)
+            {
+                if (current.Item.Equals(key))
+                {
+                    previous.Next = current.Next;
+                }
+                previous = current;
+                current = current.Next;
+            }             
+        }
+
+        [Test] // 1.3.26
+        public void Remove()
+        {
+            var nodes = BuildFiveLinkedStringNodes();
+            var otherFirst = new LinkedListNode<string>() { Item = "Second" };
+            InsertAfter(nodes[3], otherFirst);
+            var anotherFirst = new LinkedListNode<string>() { Item = "Second" };
+            InsertAfter(nodes[4], anotherFirst);
+
+            Remove(nodes[0], "Second");
+
+            Assert.AreEqual(nodes[2], nodes[0].Next);
+            Assert.AreEqual(nodes[4], nodes[3].Next);
+            Assert.IsNull(nodes[4].Next);
+        }
+
+        private int LinkedListMax(LinkedListNode<int> first)
+        {
+            var current = first;
+            int max = 0;
+            while (current != null)
+            {
+                if (current.Item > max) max = current.Item;
+                current = current.Next;
+            }
+            return max;
+        }
+
+        private LinkedListNode<int>[] BuildFiveLinkedIntNodes()
+        {
+            var nodes = new LinkedListNode<int>[5];
+
+            nodes[0] = new LinkedListNode<int> { Item = 1 };
+            nodes[1] = new LinkedListNode<int> { Item = 2 };
+            nodes[2] = new LinkedListNode<int> { Item = 3 };
+            nodes[3] = new LinkedListNode<int> { Item = 4 };
+            nodes[4] = new LinkedListNode<int> { Item = 5 };
+
+            nodes[0].Next = nodes[1];
+            nodes[1].Next = nodes[2];
+            nodes[2].Next = nodes[3];
+            nodes[3].Next = nodes[4];
+
+            return nodes;
+        }
+
+        [Test] // 1.3.27
+        public void LinkedListMax()
+        {
+            var items = BuildFiveLinkedIntNodes();
+            Assert.AreEqual(5, LinkedListMax(items[0]));
+        }
+
+        private int LinkedListMaxRecursive(LinkedListNode<int> current, int max = 0)
+        {
+            if (current == null) return max;
+            if (current.Item > max)
+            {
+                return LinkedListMaxRecursive(current.Next, current.Item);
+            } else
+            {
+                return LinkedListMaxRecursive(current.Next, max);
+            }
+        }
+
+        [Test] // 1.3.28
+        public void LinkedListMaxRecursive()
+        {
+            var items = BuildFiveLinkedIntNodes();
+            items[3].Item = 300;
+            Assert.AreEqual(300, LinkedListMaxRecursive(items[0]));
+        }
+
+        [Test] // 1.3.29
+        public void CircularQueue()
+        {
+            var cq = new CircularQueue<int>();
+            cq.Enqueue(5);
+            Assert.AreEqual(5, cq.Dequeue());
+            cq.Enqueue(10);
+            cq.Enqueue(15);
+            cq.Enqueue(20);
+            Assert.AreEqual(10, cq.Dequeue());
+            Assert.AreEqual(15, cq.Dequeue());
+            Assert.AreEqual(20, cq.Dequeue());
+        }
+
+        private DoubleNode<int> BuildFiveDoubleIntNodesAscending()
+        {
+            DoubleNode<int> previous = null;
+            DoubleNode<int> newNode = null;
+            for (var i = 0; i < 5; i++)
+            {
+                newNode = new DoubleNode<int> { Item = i };
+                DoubleNode<int>.InsertAtBeginning(previous, newNode);
+                previous = newNode;
+
+            }
+            return newNode;
+        }
+
+        [Test] // 1.3.31
+        public void DoubleNode()
+        {
+            var firstNode = BuildFiveDoubleIntNodesAscending();
+            var topNode = new DoubleNode<int> { Item = 999 };
+            DoubleNode<int>.InsertAtBeginning(firstNode, topNode);
+            Assert.AreEqual(999, DoubleNode<int>.First(firstNode).Item);
+
+            var newLastNode = new DoubleNode<int> { Item = 100 };
+            DoubleNode<int>.InsertAtEnd(firstNode, newLastNode);
+            Assert.AreEqual(100, DoubleNode<int>.Last(topNode).Item);
+
+            var lastNode = newLastNode.Previous;
+
+            Assert.AreEqual(999, DoubleNode<int>.First(newLastNode).Item);
+            DoubleNode<int>.RemoveFromBeginning(newLastNode);
+            Assert.AreEqual(4, DoubleNode<int>.First(newLastNode).Item);
+
+            Assert.AreEqual(100, DoubleNode<int>.Last(firstNode).Item);
+            DoubleNode<int>.RemoveFromEnd(firstNode);
+            Assert.AreEqual(0, DoubleNode<int>.Last(firstNode).Item);
+
+            Assert.AreEqual(4, DoubleNode<int>.First(lastNode).Item);
+            DoubleNode<int>.InsertBefore(firstNode, new DoubleNode<int> { Item = 555 });
+            Assert.AreEqual(555, firstNode.Previous.Item);
+
+            Assert.AreEqual(4, firstNode.Item);
+            Assert.AreEqual(3, firstNode.Next.Item);
+            var new222 = new DoubleNode<int> { Item = 222 };
+            DoubleNode<int>.InsertAfter(firstNode, new222);
+            Assert.AreEqual(222, firstNode.Next.Item);
+            Assert.AreEqual(3, firstNode.Next.Next.Item);
+
+            Assert.AreEqual(222, firstNode.Next.Item);
+            DoubleNode<int>.RemoveNode(firstNode, new222);
+            Assert.AreEqual(3, firstNode.Next.Item);
+            Assert.AreEqual(4, firstNode.Next.Previous.Item);
         }
 
     }
