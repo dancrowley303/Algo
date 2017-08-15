@@ -8,14 +8,14 @@ using System.Threading.Tasks;
 namespace Algo.Tests
 {
     [TestFixture]
-    public class Exercises
+    public class Fundamentals
     {
         [Test]
         public void Go()
         {
             var arr = new int[] { 5, 8, 3, 4, 9, 4, 3, 7, 8, 4, 3, 7, 5 };
             //Sort.LomutoQuickSort(arr, 0, arr.Length - 1);
-            Sort.DanQuickSort(arr, 0, arr.Length - 1);
+            SortExperiments.DanQuickSort(arr, 0, arr.Length - 1);
             //Sort.QuickSort(arr, 0, arr.Length - 1);
             Console.WriteLine(arr);
         }
@@ -29,39 +29,39 @@ namespace Algo.Tests
             matrix[2] = new int[] { 9, 10, 11, 12 };
             matrix[3] = new int[] { 13, 14, 15, 16 };
 
-            var newMatrix = Sort.RotateMatrix(matrix);
+            var newMatrix = SortExperiments.RotateMatrix(matrix);
             Console.WriteLine();
         }
 
         [Test]
         public void SortThreeNumbers()
         {
-            var result = Sort.SortThreeNumbers(15, 10, 5);
+            var result = SortExperiments.SortThreeNumbers(15, 10, 5);
             Assert.AreEqual(5, result[0]);
             Assert.AreEqual(10, result[1]);
             Assert.AreEqual(15, result[2]);
 
-            result = Sort.SortThreeNumbers(15, 5, 10);
+            result = SortExperiments.SortThreeNumbers(15, 5, 10);
             Assert.AreEqual(5, result[0]);
             Assert.AreEqual(10, result[1]);
             Assert.AreEqual(15, result[2]);
 
-            result = Sort.SortThreeNumbers(10, 5, 15);
+            result = SortExperiments.SortThreeNumbers(10, 5, 15);
             Assert.AreEqual(5, result[0]);
             Assert.AreEqual(10, result[1]);
             Assert.AreEqual(15, result[2]);
 
-            result = Sort.SortThreeNumbers(10, 15, 5);
+            result = SortExperiments.SortThreeNumbers(10, 15, 5);
             Assert.AreEqual(5, result[0]);
             Assert.AreEqual(10, result[1]);
             Assert.AreEqual(15, result[2]);
 
-            result = Sort.SortThreeNumbers(5, 10, 15);
+            result = SortExperiments.SortThreeNumbers(5, 10, 15);
             Assert.AreEqual(5, result[0]);
             Assert.AreEqual(10, result[1]);
             Assert.AreEqual(15, result[2]);
 
-            result = Sort.SortThreeNumbers(5, 15, 10);
+            result = SortExperiments.SortThreeNumbers(5, 15, 10);
             Assert.AreEqual(5, result[0]);
             Assert.AreEqual(10, result[1]);
             Assert.AreEqual(15, result[2]);

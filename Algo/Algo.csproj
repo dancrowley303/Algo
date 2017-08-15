@@ -44,6 +44,7 @@
     <Compile Include="DoubleNode.cs" />
     <Compile Include="FixedCapacityStack.cs" />
     <Compile Include="IEnumerableLinkedList.cs" />
+    <Compile Include="InsertionSort.cs" />
     <Compile Include="Interval1D.cs" />
     <Compile Include="Interval2D.cs" />
     <Compile Include="Bag.cs" />
@@ -57,7 +58,9 @@
     <Compile Include="Queue.cs" />
     <Compile Include="ResizingArrayQueue.cs" />
     <Compile Include="Search.cs" />
+    <Compile Include="SelectionSort.cs" />
     <Compile Include="Sort.cs" />
+    <Compile Include="SortExperiments.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ResizingArrayStack.cs" />
     <Compile Include="Stack.cs" />
