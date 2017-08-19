@@ -26,23 +26,35 @@ namespace Algo.Tests
             Assert.IsTrue(sort.IsSorted(chars));
         }
 
-        private Dictionary<string, long> SortCompare(int testArraySize, Dictionary<string, Sort<double>> sorts)
+        private double[] GenerateDoubleTestData(int size)
+        {
+            Random r = new Random();
+            var doubles = new double[size];
+            for (var j = 0; j < size; j++)
+            {
+                doubles[j] = r.NextDouble();
+            }
+            return doubles;
+        }
+
+        private byte[] GenerateByteTestData(int size)
+        {
+            Random r = new Random();
+            var bytes = new byte[size];
+            r.NextBytes(bytes);
+            return bytes;
+        }
+
+
+        private Dictionary<string, long> SortCompare<T>(T[] testData, Dictionary<string, Sort<T>> sorts) where T : IComparable
         {
             var results = new Dictionary<string, long>();
             var sortCount = sorts.Count;
-            Random r = new Random();
-            var doubles = new double[sortCount][];
+
+            var testDataSets = new T[sortCount][];
             for (var i = 0; i < sortCount; i++)
             {
-                doubles[i] = new double[testArraySize];
-            }
-            for (var j = 0; j < testArraySize; j++)
-            {
-                var next = r.NextDouble();
-                for (var i = 0; i < sortCount; i++)
-                {
-                    doubles[i][j] = next;
-                }
+                testDataSets[i] = (T[])testData.Clone();
             }
 
             var testSetIndex = 0;
@@ -52,9 +64,9 @@ namespace Algo.Tests
                 var sort = kvp.Value;
                 stopwatch.Reset();
                 stopwatch.Start();
-                sort.Go(doubles[testSetIndex]);
+                sort.Go(testDataSets[testSetIndex]);
                 stopwatch.Stop();
-                Assert.IsTrue(sort.IsSorted(doubles[testSetIndex]));
+                Assert.IsTrue(sort.IsSorted(testDataSets[testSetIndex]));
                 results.Add(kvp.Key, stopwatch.ElapsedMilliseconds);
                 testSetIndex++;
             }
@@ -70,7 +82,8 @@ namespace Algo.Tests
                 { "Insertion", new InsertionSort<double>() }
             };
 
-            var compareResults = SortCompare(1000, sorts);
+            var doubleTestData = GenerateDoubleTestData(1000);
+            var compareResults = SortCompare(doubleTestData, sorts);
 
             Assert.Greater(compareResults["Selection"], compareResults["Insertion"]);
         }
@@ -94,12 +107,36 @@ namespace Algo.Tests
                 { "Shell", new ShellSort<double>() }
             };
 
-            var compareResults = SortCompare(10000, sorts);
+            var doubleTestData = GenerateDoubleTestData(10000);
+            var compareResults = SortCompare(doubleTestData, sorts);
 
             Assert.Greater(compareResults["Selection"], compareResults["Insertion"]);
             Assert.Greater(compareResults["Insertion"], compareResults["Shell"]);
+        }
 
+        [Test] // 2.1.11
+        public void ShellSortWithWithArray()
+        {
+            var buffer = GenerateByteTestData(4194303);
+            var shellSort = new ShellSortWithArray<byte>();
+            shellSort.Go(buffer);
+            Assert.IsTrue(shellSort.IsSorted(buffer));
+        }
 
+        [Test]
+        public void ShellSortCompare()
+        {
+            var sorts = new Dictionary<string, Sort<byte>>()
+            {
+                { "Shell", new ShellSort<byte>() },
+                { "ShellWithArray", new ShellSortWithArray<byte>() }
+            };
+
+            var byteTestData = GenerateByteTestData(4194303);
+            var compareResults = SortCompare(byteTestData, sorts);
+
+            //note: keeping the increments in an array did not increase performance as much as I had expected
+            Assert.Greater(compareResults["Shell"], compareResults["ShellWithArray"]);
         }
     }
 }

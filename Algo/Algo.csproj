@@ -60,6 +60,7 @@
     <Compile Include="Search.cs" />
     <Compile Include="SelectionSort.cs" />
     <Compile Include="ShellSort.cs" />
+    <Compile Include="ShellSortWithArray.cs" />
     <Compile Include="Sort.cs" />
     <Compile Include="SortExperiments.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
