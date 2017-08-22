@@ -40,6 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BottomUpMergeSort.cs" />
     <Compile Include="DijkstraExpressionEvaluation.cs" />
     <Compile Include="DoubleNode.cs" />
     <Compile Include="FixedCapacityStack.cs" />
@@ -54,6 +55,7 @@
     <Compile Include="CircularQueue.cs" />
     <Compile Include="LinkedListQueue.cs" />
     <Compile Include="LinkedListStack.cs" />
+    <Compile Include="MergeSort.cs" />
     <Compile Include="Point2D.cs" />
     <Compile Include="Queue.cs" />
     <Compile Include="ResizingArrayQueue.cs" />

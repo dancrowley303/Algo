@@ -138,5 +138,24 @@ namespace Algo.Tests
             //note: keeping the increments in an array did not increase performance as much as I had expected
             Assert.Greater(compareResults["Shell"], compareResults["ShellWithArray"]);
         }
+
+        [Test]
+        public void MergeSort()
+        {
+            var chars = "MERGESORTEXAMPLE".ToCharArray();
+            var mergeSort = new MergeSort<char>();
+            mergeSort.Go(chars);
+            Assert.AreEqual("AEEEEGLMMOPRRSTX", new string(chars));
+        }
+
+        [Test]
+        public void BottomUpMergeSort()
+        {
+            var chars = "MERGESORTEXAMPLE".ToCharArray();
+            var mergeSort = new BottomUpMergeSort<char>();
+            mergeSort.Go(chars);
+            Assert.AreEqual("AEEEEGLMMOPRRSTX", new string(chars));
+        }
+
     }
 }
