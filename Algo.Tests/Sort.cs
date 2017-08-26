@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Threading.Tasks;
 
 namespace Algo.Tests
 {
@@ -155,6 +156,28 @@ namespace Algo.Tests
             var mergeSort = new BottomUpMergeSort<char>();
             mergeSort.Go(chars);
             Assert.AreEqual("AEEEEGLMMOPRRSTX", new string(chars));
+        }
+
+        [Test] // 2.2.9
+        [MTAThread]
+        public void ThreadSafeMergeSort()
+        {
+            var mergeSort = new ThreadSafeMergeSort<char>();
+            var threadCount = 200;
+            var tasks = new Task[threadCount];
+
+            for (var i = 0; i < threadCount; i++)
+            {
+                tasks[i] = new Task(() =>
+                {
+                    var chars = "MERGESORTEXAMPLE".ToCharArray();
+                    mergeSort.Go(chars);
+                    Assert.AreEqual("AEEEEGLMMOPRRSTX", new string(chars));
+                });
+                tasks[i].Start();
+            }
+
+            Task.WaitAll(tasks);
         }
 
     }
