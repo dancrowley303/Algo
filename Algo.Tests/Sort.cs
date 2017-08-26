@@ -159,7 +159,6 @@ namespace Algo.Tests
         }
 
         [Test] // 2.2.9
-        [MTAThread]
         public void ThreadSafeMergeSort()
         {
             var mergeSort = new ThreadSafeMergeSort<char>();
@@ -180,5 +179,20 @@ namespace Algo.Tests
             Task.WaitAll(tasks);
         }
 
+        [Test]
+        public void QuickSort()
+        {
+            var quickSort = new QuickSort<byte>();
+            var byteCount = 1024;
+            var bytes = new byte[byteCount];
+            for (var i = 0; i < byteCount; i++)
+            {
+                bytes[i] = (byte)(i % Byte.MaxValue);
+            }
+            //these are not random ordered
+            quickSort.Go(bytes);
+
+            Assert.IsTrue(quickSort.IsSorted(bytes));
+        }
     }
 }

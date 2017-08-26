@@ -27,5 +27,19 @@ namespace Algo
             }
             return true;
         }
+
+        public void Shuffle<T>(T[] a)
+        {
+            var rnd = new Random();
+            //Fisher-Yates algorithm
+            int n = a.Length;
+            while (n > 1)
+            {
+                int k = rnd.Next(n--);
+                var temp = a[n];
+                a[n] = a[k];
+                a[k] = temp;
+            }
+        }
     }
 }
