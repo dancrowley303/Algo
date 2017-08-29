@@ -44,6 +44,7 @@
     <Compile Include="DijkstraExpressionEvaluation.cs" />
     <Compile Include="DoubleNode.cs" />
     <Compile Include="FixedCapacityStack.cs" />
+    <Compile Include="HeapPriorityQueue.cs" />
     <Compile Include="IEnumerableLinkedList.cs" />
     <Compile Include="InsertionSort.cs" />
     <Compile Include="Interval1D.cs" />
@@ -57,6 +58,7 @@
     <Compile Include="LinkedListStack.cs" />
     <Compile Include="MergeSort.cs" />
     <Compile Include="Point2D.cs" />
+    <Compile Include="PriorityQueue.cs" />
     <Compile Include="Queue.cs" />
     <Compile Include="Quick3WaySort.cs" />
     <Compile Include="QuickSort.cs" />

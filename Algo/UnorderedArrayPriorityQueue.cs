@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Algo
 {
-    public class UnorderedArrayPriorityQueue<T> : Sort<T> where T : IComparable
+    public class UnorderedArrayPriorityQueue<T> : PriorityQueue<T> where T : IComparable
     {
         private T[] a;
         private int n;
@@ -16,23 +16,31 @@ namespace Algo
             a = new T[capacity];
         }
 
-        public void Insert(T item)
+        protected static void Exchange(T[] a, int i, int j)
+        {
+            var temp = a[i];
+            a[i] = a[j];
+            a[j] = temp;
+
+        }
+
+        public override void Insert(T item)
         {
             a[n++] = item;
         }
 
-        public T DelMax()
+        public override T DelMax()
         {
             Sort();
             return a[--n];
         }
 
-        public bool IsEmpty()
+        public override bool IsEmpty()
         {
             return n == 0;
         }
 
-        public int Size()
+        public override int Size()
         {
             return n;
         }
@@ -46,11 +54,6 @@ namespace Algo
                     Exchange(a, j, j - 1);
                 }
             }
-        }
-
-        public override void Go(T[] a)
-        {
-            throw new NotImplementedException();
         }
     }
 }

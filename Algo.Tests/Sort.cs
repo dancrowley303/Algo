@@ -210,26 +210,44 @@ namespace Algo.Tests
             Assert.IsTrue(quickSort.IsSorted(bytes));
         }
 
-        [Test]
-        public void UnorderedArrayBackedPriorityQueue()
+        private void SetupPriorityQueue(PriorityQueue<int> pq, int m, int numberOfInserts, int itemRange)
         {
-            int m = 10;
-            int numberOfInserts = 100;
-            int itemRange = 10;
             var rnd = new Random(0xc0ffee);
-            var pq = new UnorderedArrayPriorityQueue<int>(m + 1);
             for (var i = 0; i < numberOfInserts; i++)
             {
                 pq.Insert(rnd.Next(itemRange));
                 if (pq.Size() > m) pq.DelMax();
             }
+        }
+
+        [Test]
+        public void UnorderedArrayBackedPriorityQueue()
+        {
+            var pq = new UnorderedArrayPriorityQueue<int>(11);
+            SetupPriorityQueue(pq, 10, 100, 10);
+
             int outIndex = 0;
-            var output = new int[m];
+            var output = new int[10];
             while (!pq.IsEmpty())
             {
                 output[outIndex++] = pq.DelMax();
             }
             Assert.AreEqual( new int[]{0,0,0,0,0,0,0,0,0,0}, output);
+        }
+
+        [Test]
+        public void HeapPriorityQueue()
+        {
+            var pq = new HeapPriorityQueue<int>(11);
+            SetupPriorityQueue(pq, 10, 100, 10);
+
+            int outIndex = 0;
+            var output = new int[10];
+            while (!pq.IsEmpty())
+            {
+                output[outIndex++] = pq.DelMax();
+            }
+            Assert.AreEqual(new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, output);
         }
     }
 }
