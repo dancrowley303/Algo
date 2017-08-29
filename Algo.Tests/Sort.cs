@@ -209,5 +209,27 @@ namespace Algo.Tests
             quickSort.Go(bytes);
             Assert.IsTrue(quickSort.IsSorted(bytes));
         }
+
+        [Test]
+        public void UnorderedArrayBackedPriorityQueue()
+        {
+            int m = 10;
+            int numberOfInserts = 100;
+            int itemRange = 10;
+            var rnd = new Random(0xc0ffee);
+            var pq = new UnorderedArrayPriorityQueue<int>(m + 1);
+            for (var i = 0; i < numberOfInserts; i++)
+            {
+                pq.Insert(rnd.Next(itemRange));
+                if (pq.Size() > m) pq.DelMax();
+            }
+            int outIndex = 0;
+            var output = new int[m];
+            while (!pq.IsEmpty())
+            {
+                output[outIndex++] = pq.DelMax();
+            }
+            Assert.AreEqual( new int[]{0,0,0,0,0,0,0,0,0,0}, output);
+        }
     }
 }

@@ -71,6 +71,7 @@
     <Compile Include="ResizingArrayStack.cs" />
     <Compile Include="Stack.cs" />
     <Compile Include="ThreadSafeMergeSort.cs" />
+    <Compile Include="UnorderedArrayPriorityQueue.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
