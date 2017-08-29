@@ -249,5 +249,14 @@ namespace Algo.Tests
             }
             Assert.AreEqual(new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, output);
         }
+
+        [Test]
+        public void HeapSort()
+        {
+            var input = "\0SORTEXAMPLE".ToCharArray();
+            var sort = new HeapSort<char>();
+            sort.Go(input);
+            Assert.AreEqual("\0AEELMOPRSTX", new string(input));
+        }
     }
 }

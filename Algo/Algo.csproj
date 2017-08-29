@@ -45,6 +45,7 @@
     <Compile Include="DoubleNode.cs" />
     <Compile Include="FixedCapacityStack.cs" />
     <Compile Include="HeapPriorityQueue.cs" />
+    <Compile Include="HeapSort.cs" />
     <Compile Include="IEnumerableLinkedList.cs" />
     <Compile Include="InsertionSort.cs" />
     <Compile Include="Interval1D.cs" />
