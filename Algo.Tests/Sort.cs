@@ -194,5 +194,20 @@ namespace Algo.Tests
 
             Assert.IsTrue(quickSort.IsSorted(bytes));
         }
+
+        [Test]
+        public void Quick3WaySort()
+        {
+            var quickSort = new Quick3WaySort<byte>();
+            var byteCount = 1024;
+            var bytes = new byte[byteCount];
+            var rnd = new Random();
+            for (var i = 0; i < byteCount; i++)
+            {
+                bytes[i] = (byte)(rnd.Next() % 3);
+            }
+            quickSort.Go(bytes);
+            Assert.IsTrue(quickSort.IsSorted(bytes));
+        }
     }
 }

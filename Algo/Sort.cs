@@ -28,7 +28,7 @@ namespace Algo
             return true;
         }
 
-        public void Shuffle<T>(T[] a)
+        public void Shuffle(T[] a)
         {
             var rnd = new Random();
             //Fisher-Yates algorithm
