@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BinarySearchST.cs" />
     <Compile Include="BottomUpMergeSort.cs" />
     <Compile Include="DijkstraExpressionEvaluation.cs" />
     <Compile Include="DoubleNode.cs" />

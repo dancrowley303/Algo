@@ -19,6 +19,7 @@ namespace Algo.Tests
             var max = "";
             foreach (var word in st.Keys())
             {
+                //not sure if ordered and unordered underlying linked list should return the same values
                 if (st.Get(word) > st.Get(max))
                     max = word;
             }
@@ -31,6 +32,15 @@ namespace Algo.Tests
             var st = new SequentialSearchST<string, int>();
             var result = FrequencyCounter(1, st);
             Assert.AreEqual("of", result.maxWord);
+            Assert.AreEqual(10, result.maxCount);
+        }
+
+        [Test]
+        public void BinarySearchSTFrequency()
+        {
+            var st = new BinarySearchST<string, int>(128);
+            var result = FrequencyCounter(1, st);
+            Assert.AreEqual("it", result.maxWord);
             Assert.AreEqual(10, result.maxCount);
         }
 

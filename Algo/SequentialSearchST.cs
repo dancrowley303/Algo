@@ -79,22 +79,17 @@ namespace Algo
             throw new NotImplementedException();
         }
 
-        public override IEnumerable<K> Keys(K lo, K hi)
+        public override IEnumerable<K> Keys()
         {
             for (Node x = first; x != null; x = x.next)
             {
-                if (lo.Equals(x.key))
-                {
-                    while (!hi.Equals(x.key))
-                    {
-                        yield return x.key;
-                        x = x.next;
-                    }
-                    yield return x.key;
-                    yield break;
-                }
+                yield return x.key;
             }
-            yield break;
+        }
+
+        public override IEnumerable<K> Keys(K lo, K hi)
+        {
+            throw new NotImplementedException();
         }
 
         public override K Max()

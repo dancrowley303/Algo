@@ -5,8 +5,8 @@ namespace Algo
 {
     public abstract class SymbolTable<K, V> where K : IComparable
     {
-        public abstract void Put(K key, V value);
         public abstract V Get(K key);
+        public abstract void Put(K key, V value);
         public V this[K key] { get { return Get(key); } set { Put(key, value); } }
         public abstract void Delete(K key);
         public bool Contains(K key)
@@ -42,7 +42,7 @@ namespace Algo
                 return Rank(hi) - Rank(lo);
         }
         public abstract IEnumerable<K> Keys(K lo, K hi);
-        public IEnumerable<K> Keys()
+        public virtual IEnumerable<K> Keys()
         {
             return Keys(Min(), Max());
         }        
