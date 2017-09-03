@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Algo
 {
-    public class Search
+    public class SearchUtil
     {
         public static bool IsInCircularShift(string s, string t)
         {

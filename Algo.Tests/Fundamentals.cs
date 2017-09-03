@@ -151,11 +151,11 @@ namespace Algo.Tests
         {
             var circularSearch = "CATDOGFISH";
             var validComparison = "DOGFISHCAT";
-            var foundCircular = Search.IsInCircularShift(circularSearch, validComparison);
+            var foundCircular = SearchUtil.IsInCircularShift(circularSearch, validComparison);
             Assert.IsTrue(foundCircular);
 
             var invalidComparison = "DOGFISHMONKEY";
-            var notFoundCircular = Search.IsInCircularShift(circularSearch, invalidComparison);
+            var notFoundCircular = SearchUtil.IsInCircularShift(circularSearch, invalidComparison);
             Assert.IsFalse(notFoundCircular);
         }
         
@@ -163,7 +163,7 @@ namespace Algo.Tests
         public void ReverseString()
         {
             var original = "abcdefghijk";
-            var reversed = Search.ReverseString(original);
+            var reversed = SearchUtil.ReverseString(original);
             Assert.AreEqual("kjihgfedcba", reversed);
         }
 
@@ -172,7 +172,7 @@ namespace Algo.Tests
         {
             int searchCount;
             var searchArray = new int[] { 4, 6, 7, 8, 12, 18, 24, 45, 66, 78, 193, 205, 318, 500, 1024, 888923 };
-            var index = Search.IndexOf(searchArray, 6, out searchCount);
+            var index = SearchUtil.IndexOf(searchArray, 6, out searchCount);
             Assert.AreEqual(1, index);
             Assert.AreEqual(3, searchCount);
         }
