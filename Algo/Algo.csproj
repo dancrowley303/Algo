@@ -44,6 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BinarySearchST.cs" />
+    <Compile Include="BinarySearchTree.cs" />
     <Compile Include="BottomUpMergeSort.cs" />
     <Compile Include="DijkstraExpressionEvaluation.cs" />
     <Compile Include="DoubleNode.cs" />

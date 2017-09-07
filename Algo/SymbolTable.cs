@@ -20,9 +20,9 @@ namespace Algo
         public abstract int Size();
         public abstract K Min();
         public abstract K Max();
-        public abstract K Floor(K Key);
-        public abstract K Ceiling(K Key);
-        public abstract int Rank(K Key);
+        public abstract K Floor(K key);
+        public abstract K Ceiling(K key);
+        public abstract int Rank(K key);
         public abstract K Select(int k);
         public void DeleteMin()
         {

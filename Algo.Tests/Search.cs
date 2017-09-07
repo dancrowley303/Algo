@@ -44,5 +44,18 @@ namespace Algo.Tests
             Assert.AreEqual(10, result.maxCount);
         }
 
+        [Test]
+        public void BSTFloorAndCeiling()
+        {
+            var input = new int[] { 50, 25, 75, 15, 40, 60, 90, 10, 20, 35, 45, 55, 65, 85, 95 };
+            var bst = new BinarySearchTree<int, int>();
+            foreach (var i in input)
+            {
+                bst.Put(i, i);
+            }
+            Assert.AreEqual(15, bst.Floor(18));
+            Assert.AreEqual(55, bst.Ceiling(55));
+        }
+
     }
 }
