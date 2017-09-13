@@ -1,5 +1,6 @@
 ﻿using NUnit.Framework;
 using System;
+using System.Linq;
 
 namespace Algo.Tests
 {
@@ -44,8 +45,7 @@ namespace Algo.Tests
             Assert.AreEqual(10, result.maxCount);
         }
 
-        [Test]
-        public void BSTFloorAndCeiling()
+        private SymbolTable<int, int> BuildBinarySearchTree()
         {
             var input = new int[] { 50, 25, 75, 15, 40, 60, 90, 10, 20, 35, 45, 55, 65, 85, 95 };
             var bst = new BinarySearchTree<int, int>();
@@ -53,8 +53,65 @@ namespace Algo.Tests
             {
                 bst.Put(i, i);
             }
+            return bst;
+        }
+
+        [Test]
+        public void BSTFloorAndCeiling()
+        {
+            var bst = BuildBinarySearchTree();
             Assert.AreEqual(15, bst.Floor(18));
             Assert.AreEqual(55, bst.Ceiling(55));
+        }
+
+        [Test]
+        public void BSTSelectAndRank()
+        {
+            var bst = BuildBinarySearchTree();
+            Assert.AreEqual(50, bst.Select(7));
+            Assert.AreEqual(85, bst.Select(12));
+
+            Assert.AreEqual(7, bst.Rank(50));
+            Assert.AreEqual(12, bst.Rank(85));
+        }
+
+        [Test]
+        public void BSTDeleteMin()
+        {
+            var bst = BuildBinarySearchTree();
+            Assert.AreEqual(10, bst.Min());
+            bst.DeleteMin();
+            Assert.AreEqual(15, bst.Min());
+            bst.DeleteMin();
+            Assert.AreEqual(20, bst.Min());
+        }
+
+        [Test]
+        public void BSTDeleteMax()
+        {
+            var bst = BuildBinarySearchTree();
+            Assert.AreEqual(95, bst.Max());
+            bst.DeleteMax();
+            Assert.AreEqual(90, bst.Max());
+            bst.DeleteMax();
+            Assert.AreEqual(85, bst.Max());
+        }
+
+        [Test]
+        public void BSTDelete()
+        {
+            var bst = BuildBinarySearchTree();
+            Assert.AreEqual(60, bst.Select(9));
+            bst.Delete(60);
+            Assert.AreEqual(65, bst.Select(9));
+        }
+
+        [Test]
+        public void BSTKeys()
+        {
+            var bst = BuildBinarySearchTree();
+            var keySet = bst.Keys(35, 55);
+            Assert.AreEqual(new int[] { 35, 40, 45, 50, 55 }, keySet.ToArray());
         }
 
     }

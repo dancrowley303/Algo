@@ -24,11 +24,11 @@ namespace Algo
         public abstract K Ceiling(K key);
         public abstract int Rank(K key);
         public abstract K Select(int k);
-        public void DeleteMin()
+        public virtual void DeleteMin()
         {
             Delete(Min());
         }
-        public void DeleteMax()
+        public virtual void DeleteMax()
         {
             Delete(Max());
         }
