@@ -68,6 +68,7 @@
     <Compile Include="Queue.cs" />
     <Compile Include="Quick3WaySort.cs" />
     <Compile Include="QuickSort.cs" />
+    <Compile Include="RedBlackBST.cs" />
     <Compile Include="ResizingArrayQueue.cs" />
     <Compile Include="Search.cs" />
     <Compile Include="SelectionSort.cs" />

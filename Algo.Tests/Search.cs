@@ -114,5 +114,26 @@ namespace Algo.Tests
             Assert.AreEqual(new int[] { 35, 40, 45, 50, 55 }, keySet.ToArray());
         }
 
+        [Test]
+        public void RedBlackBSTPut()
+        {
+            var bst = new RedBlackBST<char, int>();
+            var idx = 0;
+            foreach(var c in "SEARCHXMPL".ToCharArray())
+            {
+                bst.Put(c, ++idx);
+            }
+
+            //the interface doesn't really expose if the tree is balanced, so I'll
+            //just check things are ranked where I expect them to be
+            Assert.AreEqual('A', bst.Select(0));
+            Assert.AreEqual('E', bst.Select(2));
+            Assert.AreEqual('R', bst.Select(7));
+            Assert.AreEqual('X', bst.Select(9));
+
+            Assert.AreEqual(1, bst.Get('S'));
+            Assert.AreEqual(10, bst.Get('L'));
+        }
+
     }
 }
