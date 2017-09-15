@@ -72,6 +72,7 @@
     <Compile Include="ResizingArrayQueue.cs" />
     <Compile Include="Search.cs" />
     <Compile Include="SelectionSort.cs" />
+    <Compile Include="SeparateChainingHashST.cs" />
     <Compile Include="SequentialSearchST.cs" />
     <Compile Include="ShellSort.cs" />
     <Compile Include="ShellSortWithArray.cs" />

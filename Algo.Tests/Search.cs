@@ -135,5 +135,17 @@ namespace Algo.Tests
             Assert.AreEqual(10, bst.Get('L'));
         }
 
+        [Test]
+        public void SeparateChainingHashPut()
+        {
+            //force lots of collisions by picking a small modulo for the hashing function
+            var bst = new SeparateChainingHashST<string, int>(5);
+            for (char i = 'a'; i <= 'z'; i++)
+            {
+                bst.Put(new string(new char[] { i, i, i }), i);
+            }
+            Assert.AreEqual(110, bst.Get("nnn"));
+        }
+
     }
 }
