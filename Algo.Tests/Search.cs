@@ -147,5 +147,30 @@ namespace Algo.Tests
             Assert.AreEqual(110, bst.Get("nnn"));
         }
 
+        [Test]
+        public void LinearProbingHashPut()
+        {
+            var bst = new LinearProbingHashST<char, int>();
+            var i = 0;
+            foreach(var c in "SEARCHEXAMPLE".ToCharArray())
+                bst.Put(c, i++);
+
+            Assert.AreEqual(12, bst.Get('E'));
+        }
+
+        [Test]
+        public void LinearProbingHashDelete()
+        {
+            var bst = new LinearProbingHashST<char, int>(1);
+            var i = 0;
+            foreach (var c in "SEARCHEXAMPLE".ToCharArray())
+                bst.Put(c, i++);
+            Assert.AreEqual(12, bst.Get('E'));
+            bst.Delete('E');
+            Assert.AreEqual(default(int), bst.Get('E'));
+            bst.Put('E', 20);
+            Assert.AreEqual(20, bst.Get('E'));
+        }
+
     }
 }

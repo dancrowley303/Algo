@@ -11,7 +11,7 @@ namespace Algo
         public abstract void Delete(K key);
         public bool Contains(K key)
         {
-            return Get(key) != null;
+            return Get(key).Equals(default(K)) == false;
         }
         public bool IsEmpty()
         {
